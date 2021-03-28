@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #word {
+      width: 600px;
+      height: 390px;
+      font-size: 18px;
+    }
+
+  </style>
+</head>
+<body>
+  <textarea id="word" name="" id="" cols="30" rows="10"></textarea>
+  <button id="play">play</button>
+  <script>
+    console.log(speechSynthesis.getVoices())
+    const speak = new SpeechSynthesisUtterance()
+    // speak.lang = 'uk'
+    speak.rate = 0.7
+    
+    const play = document.getElementById('play')
+    const word = document.getElementById('word')
+    const initWord = `hello everyone， i am lee， i grow in liangshan and live in chengdu, I graduate in chengdu university of technology，
+     I have 5 years of Web technology experience, so I am familiar with JavaScipt and HTML. In my daily work, the most commonly used technology is Vue and its family library, and I also have some understanding of React. Of course, I also have some understanding of other programming languages, such as NodeJS, Python and Java, but I have not used them in real project
+    In my current company,My main job is to take charge of front-end project development. At the same time, I also like to pay attention to some popular technologies, such as Docker. I built the continuous integration and continuous deployment based on GitLab and GitLab-Runner for the company
+    That's all. Hope a happy interview '`
+    word.innerText = initWord
+    speak.text = initWord
+    word.addEventListener('change', (ev) => {
+      // console.log(ev)
+      const text = ev.target.value
+      speak.text = text
+    })
+    play.addEventListener('click', () => {
+      run()
+    })
+    
+    function run () {
+      console.log(speak)
+      speechSynthesis.speak(speak)
+    }
+  </script>
+</body>
+</html>
